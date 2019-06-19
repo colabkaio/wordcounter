@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resultado</title>
+</head>
+<body>
+    {% load main %}
+    <div>
+        <div style="padding-bottom: 10px">
+            <h4>Resultado para: </h4>
+            <p style="max-width: 30%;">{{ texto_recebido }}</p>
+            <table border='1' style="max-width: 30%; float: right; margin-right: 30%">
+                <tr>
+                  <th>Palavra</th>
+                  <th>Frequencia</th>
+                  <th>Porcentagem</th>
+                </tr>
+                {% for palavra, frequencia in frequencia_ordenada.items %}
+                    <tr>
+                    <td>{{ palavra }}</td>
+                    <td>{{ frequencia }}</td>
+                    <td>{{ frequencia|porcentagem_de:quantidade_de_palavras }}</td>
+                    </tr>
+                {% endfor%}
+              </table>
+        </div>
+        <div>
+            <ul>
+                <li>Quantidade de palavras: {{ quantidade_de_palavras }}</li>
+                <li>Número de caracteres: {{ quantidade_de_caracteres }}</li>
+                <li>Número de caracteres sem espaço: {{ caracteres_sem_espaco }}</li>
+                <li>Número de frases: {{ quantidade_de_frases }}</li>
+                <li>Número de parágrafos: {{ quantidade_de_paragrafos }}</li>
+            </ul> 
+        </div>
+        <button type="button"><a href="{% url 'index' %}">Voltar</a></button>
+    </div>
+</body>
+</html>
